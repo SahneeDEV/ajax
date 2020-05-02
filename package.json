@@ -1,9 +1,9 @@
 {
   "name": "ajax",
   "version": "1.0.0",
-  "description": "A dependency-free utility library for making AJAX requests.",
+  "description": "A dependency-free utility library for making AJAX requests in JavaScript & TypeScript.",
   "main": "dist/index.js",
-  "types": "types/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
