@@ -24,6 +24,8 @@ export const defaultInit: Partial<AjaxRequestInit> & { headers: Record<string, s
   headers: {}
 };
 
+type URLComponent = string | number | boolean | null | undefined;
+
 /**
  * A valid URL for an ajax request. Can either directly be a string representing a raw URL or a object to safely build it (recommended).
  */
@@ -35,9 +37,12 @@ export type AjaxURL = string | {
    * If our currently domain is `www.sahnee.games` the `url` in this example can be 
    * specified as `/request`. Otherwise it is `www.sahnee.games/request`.
    * 
+   * Can also be an array (e.g. `['api', 'user', 4]` for `'/api/user/4'`). `undefined` & `null` in 
+   * the array are ignored.
+   * 
    * However prefer using `origin` for cross origin requests.
    */
-  url: string,
+  url: string | URLComponent[],
 
   /**
    * The origin domain the `url` is relative to. By default the current domain.
@@ -82,7 +87,7 @@ export type AjaxURL = string | {
    * ```
    */
   search?: {
-    [key: string]: string | number | boolean | null | undefined | (string | number | boolean | null | undefined)[]
+    [key: string]: URLComponent | URLComponent[]
   }
 };
 
@@ -95,7 +100,16 @@ export const url = (p: AjaxURL) => {
   if (typeof p === 'string') {
     return p;
   }
-  const obj = new URL(p.url, p.origin || window.location.origin);
+  let url = '';
+  if (Array.isArray(p.url)) {
+    url = p.url
+      .filter(element => element !== null && element !== undefined)
+      .map(element => encodeURIComponent(element!.toString()))
+      .join('/');
+  } else {
+    url = p.url;
+  }
+  const obj = new URL(url, p.origin || window.location.origin);
   if (p.protocol) {
     obj.protocol = p.protocol;
   }
