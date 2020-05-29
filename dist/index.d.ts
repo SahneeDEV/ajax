@@ -12,6 +12,7 @@ declare type AjaxRequestInit = RequestInit & {
 export declare const defaultInit: Partial<AjaxRequestInit> & {
     headers: Record<string, string>;
 };
+declare type URLComponent = string | number | boolean | null | undefined;
 /**
  * A valid URL for an ajax request. Can either directly be a string representing a raw URL or a object to safely build it (recommended).
  */
@@ -23,9 +24,12 @@ export declare type AjaxURL = string | {
      * If our currently domain is `www.sahnee.games` the `url` in this example can be
      * specified as `/request`. Otherwise it is `www.sahnee.games/request`.
      *
+     * Can also be an array (e.g. `['api', 'user', 4]` for `'/api/user/4'`). `undefined` & `null` in
+     * the array are ignored.
+     *
      * However prefer using `origin` for cross origin requests.
      */
-    url: string;
+    url: string | URLComponent[];
     /**
      * The origin domain the `url` is relative to. By default the current domain.
      */
@@ -63,7 +67,7 @@ export declare type AjaxURL = string | {
      * ```
      */
     search?: {
-        [key: string]: string | number | boolean | null | undefined | (string | number | boolean | null | undefined)[];
+        [key: string]: URLComponent | URLComponent[];
     };
 };
 /**

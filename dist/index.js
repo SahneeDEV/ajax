@@ -94,7 +94,17 @@ exports.url = function (p) {
     if (typeof p === 'string') {
         return p;
     }
-    var obj = new URL(p.url, p.origin || window.location.origin);
+    var url = '';
+    if (Array.isArray(p.url)) {
+        url = p.url
+            .filter(function (element) { return element !== null && element !== undefined; })
+            .map(function (element) { return encodeURIComponent(element.toString()); })
+            .join('/');
+    }
+    else {
+        url = p.url;
+    }
+    var obj = new URL(url, p.origin || window.location.origin);
     if (p.protocol) {
         obj.protocol = p.protocol;
     }
