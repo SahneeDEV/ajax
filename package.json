@@ -1,6 +1,6 @@
 {
   "name": "@sahnee/ajax",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "A dependency-free utility library for making AJAX requests in JavaScript & TypeScript.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

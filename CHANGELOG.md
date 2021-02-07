@@ -4,6 +4,10 @@
 
 - Nothing so far
 
+## 2.1.0
+
+- Allow calling the `json` and `ajax` functions with just a single parameter
+
 ## 2.0.1
 
 - Recompiled the source code
