@@ -8,7 +8,7 @@
     "build": "tsc"
   },
   "author": "Sahnee.dev",
-  "license": "(c) Sahnee.dev, all rights reserved",
+  "license": "Apache-2.0",
   "devDependencies": {
     "typescript": "^3.9.7"
   },
