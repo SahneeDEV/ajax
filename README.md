@@ -1,4 +1,4 @@
-# ajax
+# @sahnee/ajax
 
 A dependency-free utility library for making AJAX requests in JavaScript & TypeScript.
 
