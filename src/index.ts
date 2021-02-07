@@ -152,7 +152,7 @@ export const url = (p: AjaxURL) => {
  * @param req The request.
  * @param init Some details.
  */
-export const ajax = async (req: AjaxURL, init: AjaxRequestInit) => {
+export const ajax = async (req: AjaxURL, init: AjaxRequestInit = {}) => {
   const headers = new Headers();
   mergeHeaders(headers, defaultInit.headers);
   if (init.headers) {
@@ -197,7 +197,7 @@ export const ajax = async (req: AjaxURL, init: AjaxRequestInit) => {
  * `JSON.stringify`. Should this not be sufficent this parameter can be omitted and the already 
  * seralized JSON may be passed as the body.
  */
-export const json = async <T>(req: AjaxURL, { json, ...init }: AjaxRequestInit & { json?: any }) => {
+export const json = async <T>(req: AjaxURL, { json, ...init }: AjaxRequestInit & { json?: any } = {}) => {
   // Maybe stringify body
   const body = json ? JSON.stringify(json) : init.body;
   // Create new request.

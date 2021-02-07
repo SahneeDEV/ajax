@@ -148,50 +148,53 @@ exports.url = function (p) {
  * @param req The request.
  * @param init Some details.
  */
-exports.ajax = function (req, init) { return __awaiter(void 0, void 0, void 0, function () {
-    var headers, res, type, json_1, text;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                headers = new Headers();
-                mergeHeaders(headers, exports.defaultInit.headers);
-                if (init.headers) {
-                    mergeHeaders(headers, init.headers);
-                }
-                init.headers = headers;
-                init = Object.assign({}, exports.defaultInit, init);
-                // https://muffinman.io/uploading-files-using-fetch-multipart-form-data/
-                if (init.body instanceof FormData && init.headers) {
-                    deleteHeader(init.headers, 'content-type');
-                }
-                return [4 /*yield*/, fetch(exports.url(req), init)];
-            case 1:
-                res = _a.sent();
-                if (!(!res.ok && !init.allowNonSuccessStatusCode)) return [3 /*break*/, 5];
-                type = res.headers.get('content-type');
-                if (!(type && type.toLowerCase().startsWith(JSON_CONTENT_TYPE_BASIC))) return [3 /*break*/, 3];
-                return [4 /*yield*/, res.json()];
-            case 2:
-                json_1 = _a.sent();
-                throw new APIError({
-                    status: res.status,
-                    code: 'code' in json_1 ? json_1.code : res.statusText,
-                    message: 'message' in json_1 ? json_1.message : res.statusText,
-                    details: json_1
-                });
-            case 3: return [4 /*yield*/, res.text()];
-            case 4:
-                text = _a.sent();
-                throw new APIError({
-                    status: res.status,
-                    code: res.statusText,
-                    message: text || res.statusText,
-                    details: {}
-                });
-            case 5: return [2 /*return*/, res];
-        }
+exports.ajax = function (req, init) {
+    if (init === void 0) { init = {}; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        var headers, res, type, json_1, text;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    headers = new Headers();
+                    mergeHeaders(headers, exports.defaultInit.headers);
+                    if (init.headers) {
+                        mergeHeaders(headers, init.headers);
+                    }
+                    init.headers = headers;
+                    init = Object.assign({}, exports.defaultInit, init);
+                    // https://muffinman.io/uploading-files-using-fetch-multipart-form-data/
+                    if (init.body instanceof FormData && init.headers) {
+                        deleteHeader(init.headers, 'content-type');
+                    }
+                    return [4 /*yield*/, fetch(exports.url(req), init)];
+                case 1:
+                    res = _a.sent();
+                    if (!(!res.ok && !init.allowNonSuccessStatusCode)) return [3 /*break*/, 5];
+                    type = res.headers.get('content-type');
+                    if (!(type && type.toLowerCase().startsWith(JSON_CONTENT_TYPE_BASIC))) return [3 /*break*/, 3];
+                    return [4 /*yield*/, res.json()];
+                case 2:
+                    json_1 = _a.sent();
+                    throw new APIError({
+                        status: res.status,
+                        code: 'code' in json_1 ? json_1.code : res.statusText,
+                        message: 'message' in json_1 ? json_1.message : res.statusText,
+                        details: json_1
+                    });
+                case 3: return [4 /*yield*/, res.text()];
+                case 4:
+                    text = _a.sent();
+                    throw new APIError({
+                        status: res.status,
+                        code: res.statusText,
+                        message: text || res.statusText,
+                        details: {}
+                    });
+                case 5: return [2 /*return*/, res];
+            }
+        });
     });
-}); };
+};
 /**
  * Loads the given request as JSON. You can also pass request JSON in the `json` prop.
  * Automatically sets the headers `accept` and `content-type` to `application/json; charset=utf-8`.
@@ -201,28 +204,31 @@ exports.ajax = function (req, init) { return __awaiter(void 0, void 0, void 0, f
  * `JSON.stringify`. Should this not be sufficent this parameter can be omitted and the already
  * seralized JSON may be passed as the body.
  */
-exports.json = function (req, _a) { return __awaiter(void 0, void 0, void 0, function () {
-    var body, headers, res;
-    var json = _a.json, init = __rest(_a, ["json"]);
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                body = json ? JSON.stringify(json) : init.body;
-                headers = new Headers();
-                if (init.headers) {
-                    mergeHeaders(headers, init.headers);
-                }
-                headers.set('accept', JSON_CONTENT_TYPE_UTF8);
-                headers.set('content-type', JSON_CONTENT_TYPE_UTF8);
-                init = __assign(__assign({}, init), { body: body, headers: headers });
-                return [4 /*yield*/, exports.ajax(req, init)];
-            case 1:
-                res = _b.sent();
-                return [4 /*yield*/, res.json()];
-            case 2: return [2 /*return*/, _b.sent()];
-        }
+exports.json = function (req, _a) {
+    if (_a === void 0) { _a = {}; }
+    return __awaiter(void 0, void 0, void 0, function () {
+        var body, headers, res;
+        var json = _a.json, init = __rest(_a, ["json"]);
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    body = json ? JSON.stringify(json) : init.body;
+                    headers = new Headers();
+                    if (init.headers) {
+                        mergeHeaders(headers, init.headers);
+                    }
+                    headers.set('accept', JSON_CONTENT_TYPE_UTF8);
+                    headers.set('content-type', JSON_CONTENT_TYPE_UTF8);
+                    init = __assign(__assign({}, init), { body: body, headers: headers });
+                    return [4 /*yield*/, exports.ajax(req, init)];
+                case 1:
+                    res = _b.sent();
+                    return [4 /*yield*/, res.json()];
+                case 2: return [2 /*return*/, _b.sent()];
+            }
+        });
     });
-}); };
+};
 var mergeHeaders = function (target, source, overwrite) {
     if (overwrite === void 0) { overwrite = true; }
     var setHeader = function (header, value) {

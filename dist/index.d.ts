@@ -81,7 +81,7 @@ export declare const url: (p: AjaxURL) => string;
  * @param req The request.
  * @param init Some details.
  */
-export declare const ajax: (req: AjaxURL, init: AjaxRequestInit) => Promise<Response>;
+export declare const ajax: (req: AjaxURL, init?: AjaxRequestInit) => Promise<Response>;
 /**
  * Loads the given request as JSON. You can also pass request JSON in the `json` prop.
  * Automatically sets the headers `accept` and `content-type` to `application/json; charset=utf-8`.
@@ -91,7 +91,7 @@ export declare const ajax: (req: AjaxURL, init: AjaxRequestInit) => Promise<Resp
  * `JSON.stringify`. Should this not be sufficent this parameter can be omitted and the already
  * seralized JSON may be passed as the body.
  */
-export declare const json: <T>(req: AjaxURL, { json, ...init }: RequestInit & {
+export declare const json: <T>(req: AjaxURL, { json, ...init }?: RequestInit & {
     /**
      * By default a non 200-status code will raise an `APIError`. If this property
      * is set to false, no API error will be thrown and the request will be treated
