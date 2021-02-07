@@ -9,6 +9,10 @@
   },
   "author": "Sahnee.dev",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sahnee-DE/ajax"
+  },
   "devDependencies": {
     "typescript": "^3.9.7"
   },
