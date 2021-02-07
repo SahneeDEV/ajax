@@ -71,6 +71,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.json = exports.ajax = exports.url = exports.defaultInit = void 0;
 /**
  * Content-Type for JSON without UTF-8.
  */
@@ -314,7 +315,7 @@ var APIError = /** @class */ (function (_super) {
         get: function () {
             return this.$code;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APIError.prototype, "status", {
@@ -324,7 +325,7 @@ var APIError = /** @class */ (function (_super) {
         get: function () {
             return this.$status;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(APIError.prototype, "details", {
@@ -334,7 +335,7 @@ var APIError = /** @class */ (function (_super) {
         get: function () {
             return this.$details;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return APIError;
