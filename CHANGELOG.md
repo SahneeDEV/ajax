@@ -4,6 +4,10 @@
 
 - Nothing so far
 
+## 2.2.0
+
+- Allow setting default options for URLs. By @MatthiasDummler
+
 ## 2.1.0
 
 - Allow calling the `json` and `ajax` functions with just a single parameter
