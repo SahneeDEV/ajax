@@ -95,6 +95,7 @@ exports.url = function (p) {
     if (typeof p === 'string') {
         return p;
     }
+    p = Object.assign({}, exports.defaultInit.url, p);
     var url = '';
     if (Array.isArray(p.url)) {
         url = p.url

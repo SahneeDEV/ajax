@@ -20,16 +20,13 @@ const JSON_CONTENT_TYPE_UTF8 = JSON_CONTENT_TYPE_BASIC + '; charset=utf-8';
 /**
  * Default options for every request.
  */
-export const defaultInit: Partial<AjaxRequestInit> & { headers: Record<string, string> } = {
+export const defaultInit: Partial<AjaxRequestInit> & { headers: Record<string, string>, url?: Partial<AjaxURLObject> } = {
   headers: {}
 };
 
 type URLComponent = string | number | boolean | null | undefined;
 
-/**
- * A valid URL for an ajax request. Can either directly be a string representing a raw URL or a object to safely build it (recommended).
- */
-export type AjaxURL = string | {
+type AjaxURLObject = {
   /**
    * The base URL of the request.
    * Example: `https://www.sahnee.games/request?param1=true&params2=hello%20world&param2=second#test`
@@ -92,6 +89,11 @@ export type AjaxURL = string | {
 };
 
 /**
+ * A valid URL for an ajax request. Can either directly be a string representing a raw URL or a object to safely build it (recommended).
+ */
+export type AjaxURL = string | AjaxURLObject
+
+/**
  * Helper for inline building a URL.
  * @param url The URL.
  * @param query The search params.
@@ -100,6 +102,7 @@ export const url = (p: AjaxURL) => {
   if (typeof p === 'string') {
     return p;
   }
+  p = Object.assign({}, defaultInit.url, p);
   let url = '';
   if (Array.isArray(p.url)) {
     url = p.url
