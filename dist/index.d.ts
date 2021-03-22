@@ -11,12 +11,10 @@ declare type AjaxRequestInit = RequestInit & {
  */
 export declare const defaultInit: Partial<AjaxRequestInit> & {
     headers: Record<string, string>;
+    url?: Partial<AjaxURLObject>;
 };
 declare type URLComponent = string | number | boolean | null | undefined;
-/**
- * A valid URL for an ajax request. Can either directly be a string representing a raw URL or a object to safely build it (recommended).
- */
-export declare type AjaxURL = string | {
+declare type AjaxURLObject = {
     /**
      * The base URL of the request.
      * Example: `https://www.sahnee.games/request?param1=true&params2=hello%20world&param2=second#test`
@@ -70,6 +68,10 @@ export declare type AjaxURL = string | {
         [key: string]: URLComponent | URLComponent[];
     };
 };
+/**
+ * A valid URL for an ajax request. Can either directly be a string representing a raw URL or a object to safely build it (recommended).
+ */
+export declare type AjaxURL = string | AjaxURLObject;
 /**
  * Helper for inline building a URL.
  * @param url The URL.
