@@ -12,7 +12,7 @@ npm install @sahnee/ajax
 
 This library provides a simple to use API to make AJAX calls using fetch. If your browser does not support fetch (e.g. IE11) you need to provide a polyfill on your end.
 
-This readme will provide a short overview of many basic functions, however your are urged to read the documentation included in the source for before using.
+This readme will provide a short overview of many basic functions, however your are urged to read the documentation included in the source before using.
 
 ### Simple AJAX request
 
@@ -92,6 +92,8 @@ import { defaultInit } from '@sahnee/ajax';
 
 defaultInit.headers['x-auth'] = 'my-auth-token-123';
 ```
+
+The default options will also be applied to the result of the `url` function.
 
 ## Important differences to fetch
 
