@@ -218,7 +218,7 @@ exports.json = function (req, _a) {
                     if (init.headers) {
                         mergeHeaders(headers, init.headers);
                     }
-                    headers.set('accept', JSON_CONTENT_TYPE_UTF8);
+                    headers.set('accept', JSON_CONTENT_TYPE_BASIC);
                     headers.set('content-type', JSON_CONTENT_TYPE_UTF8);
                     init = __assign(__assign({}, init), { body: body, headers: headers });
                     return [4 /*yield*/, exports.ajax(req, init)];

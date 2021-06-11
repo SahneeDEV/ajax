@@ -208,7 +208,7 @@ export const json = async <T>(req: AjaxURL, { json, ...init }: AjaxRequestInit &
   if (init.headers) {
     mergeHeaders(headers, init.headers);
   }
-  headers.set('accept', JSON_CONTENT_TYPE_UTF8)
+  headers.set('accept', JSON_CONTENT_TYPE_BASIC)
   headers.set('content-type', JSON_CONTENT_TYPE_UTF8)
   init = {
     ...init,
