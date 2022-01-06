@@ -21,7 +21,7 @@ The `ajax` funtcion is a thin wrapper over `fetch`:
 ```js
 import { ajax } from '@sahnee/ajax';
 
-const response = await ajax('account.sahnee.dev/api/flow/public_key');
+const response = await ajax('https://account.sahnee.dev/api/flow/public_key');
 const publicKey = await response.text();
 // publicKey = ---- BEGIN PUBLIC KEY ---- \n [...]
 ```
