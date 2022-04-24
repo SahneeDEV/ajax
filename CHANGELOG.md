@@ -7,7 +7,7 @@
 
 ## 2.2.1
 
-- Fixed inavlid usage of `charset=utf-8` in the accept header when sending a JSON request.
+- Fixed invalid usage of `charset=utf-8` in the accept header when sending a JSON request.
 
 ## 2.2.0
 
