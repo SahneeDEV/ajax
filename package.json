@@ -14,6 +14,6 @@
     "url": "https://github.com/Sahnee-DE/ajax"
   },
   "devDependencies": {
-    "typescript": "3.9.7"
+    "typescript": "4.9.3"
   }
 }
